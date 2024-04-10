@@ -16,7 +16,7 @@ const DashboardLayout = ({
                 <Sidebar />
             </div>
             {/* Немного сместим вправо контент, так как ширина равна 56 смотри сверху */}
-            <main className="md:pl-56 h-full">
+            <main className="md:pl-56 pt-[80px] h-full">
                 {children}
             </main>
         </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { UserButton } from "@clerk/nextjs";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button"
 
 import { LogOut } from "lucide-react";
@@ -9,7 +9,6 @@ import Link from "next/link";
 
 export const NavbarRoutes = () => {
     const pathname = usePathname();
-    const router = useRouter();
 
     // Создал для изменения поведения навигационной панели
     // При teacher мод будет видна кнопка, при втором такого не будет
@@ -19,10 +18,12 @@ export const NavbarRoutes = () => {
     return (
         <div className="flex gap-x-2 ml-auto">
             {isTeacherPage || isPlayerPage ? (
-                <Button size="sm" variant="ghost">
-                    <LogOut className="h-4 w-4 mr-2" />
-                    Выход
-                </Button>
+                <Link href="/">
+                    <Button size="sm" variant="ghost">
+                        <LogOut className="h-4 w-4 mr-2" />
+                        Выход
+                    </Button>
+                </Link>
             ) : (
                 <Link href="/teacher/courses">
                     <Button size="sm" variant="ghost">

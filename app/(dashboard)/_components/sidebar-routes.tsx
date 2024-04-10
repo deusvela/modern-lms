@@ -1,7 +1,8 @@
 "use client";
 
-import { Compass, Layout } from "lucide-react"
+import { BarChart, Compass, Layout, List } from "lucide-react"
 import { SidebarItem } from "./sidebar-item";
+import { usePathname } from "next/navigation";
 
 // Информация об боковой панели (кнопки)
 const guestRoutes = [
@@ -15,11 +16,27 @@ const guestRoutes = [
         label: "Поиск",
         href: "/search",
     },
-]
+];
+
+const teacherRoutes = [
+    {
+        icon: List,
+        label: "Мои курсы",
+        href: "/teacher/courses",
+    },
+    {
+        icon: BarChart,
+        label: "Сбор информации",
+        href: "/teacher/analytics",
+    },
+];
 
 export const SidebarRoutes = () => {
-    const routes = guestRoutes;
+    const pathname = usePathname();
 
+    const isTeacherPage = pathname?.includes('/teacher');
+
+    const routes = isTeacherPage ? teacherRoutes : guestRoutes;
 
     return (
         <div className="flex flex-col w-full">
