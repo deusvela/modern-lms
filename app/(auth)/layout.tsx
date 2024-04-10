@@ -1,4 +1,4 @@
-const AuthLyout = ({
+const AuthLayout = ({
     children
 }: {
     children: React.ReactNode
@@ -10,4 +10,4 @@ const AuthLyout = ({
     );
 }
 
-export default AuthLyout;
+export default AuthLayout;
