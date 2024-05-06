@@ -19,14 +19,13 @@ import {
     FormMessage
 } from "@/components/ui/form"
 import { cn } from "@/lib/utils";
+import { Course } from "@prisma/client";
 
 
 
 
 interface DescriptionFormProps {
-    initialData: {
-        description: string;
-    };
+    initialData: Course;
     courseId: string;
 };
 
@@ -46,7 +45,9 @@ export const DescriptionForm = ({
     const router = useRouter();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
-        defaultValues: initialData,
+        defaultValues: {
+            description: initialData?.description || ""
+        },
     });
 
     const { isSubmitting, isValid } = form.formState;

@@ -3,8 +3,9 @@ import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import { IconBadge } from "@/components/icon-badge"
 import { LayoutDashboard } from "lucide-react";
-import { TitleForm } from "../_components/title-form";
-import { DescriptionForm } from "../_components/description-form";
+import { TitleForm } from "./_components/title-form";
+import { DescriptionForm } from "./_components/description-form";
+import { ImageForm } from "./_components/image-form";
 
 const CourseIdPage = async ({
     params
@@ -65,6 +66,10 @@ const CourseIdPage = async ({
                         courseId={course.id}
                     />
                     <DescriptionForm
+                        initialData={course}
+                        courseId={course.id}
+                    />
+                    <ImageForm
                         initialData={course}
                         courseId={course.id}
                     />
