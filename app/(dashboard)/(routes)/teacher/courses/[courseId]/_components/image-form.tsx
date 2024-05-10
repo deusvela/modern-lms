@@ -65,7 +65,7 @@ export const ImageForm = ({
                     )}
                     {!isEditing && initialData.imageUrl && (
                         <>
-                            <Pencil className="h-2 w-4 mr-2" />
+                            <Pencil className="h-4 w-4 mr-2" />
                             Изменить фото
                         </>
                     )}

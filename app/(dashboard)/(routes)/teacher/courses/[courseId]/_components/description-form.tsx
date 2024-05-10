@@ -73,7 +73,7 @@ export const DescriptionForm = ({
                     )}
                     {!isEditing && (
                         <>
-                            <Pencil className="h-2 w-4 mr-2" />
+                            <Pencil className="h-4 w-4 mr-2" />
                             Редактировать описание
                         </>
                     )}
@@ -91,7 +91,7 @@ export const DescriptionForm = ({
                 <Form {...form}>
                     <form
                         onSubmit={form.handleSubmit(onSubmit)}
-                        className=" space-y-4 mt-4"
+                        className="space-y-4 mt-4"
                     >
                         <FormField
                             control={form.control}
