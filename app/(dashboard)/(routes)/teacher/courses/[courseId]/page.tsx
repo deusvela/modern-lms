@@ -72,7 +72,7 @@ const CourseIdPage = async ({
                         Настройка курса
                     </h1>
                     <span className="text-sm text-slate-700">
-                        Выполненно условий {completionText}
+                        Выполнено условий {completionText}
                     </span>
                 </div>
             </div>
