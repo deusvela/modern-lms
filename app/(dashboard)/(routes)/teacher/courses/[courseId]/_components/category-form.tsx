@@ -22,8 +22,6 @@ import { Course } from "@prisma/client";
 import { Combobox } from "@/components/ui/combobox";
 
 
-
-
 interface CategoryFormProps {
     initialData: Course;
     courseId: string;
