@@ -5,25 +5,25 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["fullTextSearch", "fullTextIndex"]
+  provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
+  provider     = "postgresql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 model Course {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  id          String  @id @default(uuid())
   userId      String
-  title       String  @db.String
-  description String? @db.String
-  imageUrl    String? @db.String
+  title       String  @db.Text
+  description String? @db.Text
+  imageUrl    String? @db.Text
   price       Float?
   isPublished Boolean @default(false)
 
-  categoryId String?   @db.ObjectId
+  categoryId String?
   category   Category? @relation(fields: [categoryId], references: [id])
 
   chapters    Chapter[]
@@ -34,21 +34,20 @@ model Course {
   updatedAt DateTime @updatedAt
 
   @@index([categoryId])
-  @@fulltext([title])
 }
 
 model Category {
-  id      String   @id @default(auto()) @map("_id") @db.ObjectId
+  id      String   @id @default(uuid())
   name    String   @unique
   courses Course[]
 }
 
 model Attachment {
-  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  id   String @id @default(uuid())
   name String
-  url  String @db.String
+  url  String @db.Text
 
-  courseId String @db.ObjectId
+  courseId String
   course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
@@ -58,17 +57,17 @@ model Attachment {
 }
 
 model Chapter {
-  id          String  @id @default(auto()) @map("_id") @db.ObjectId
+  id          String  @id @default(uuid())
   title       String
-  description String? @db.String
-  videoUrl    String? @db.String
+  description String? @db.Text
+  videoUrl    String? @db.Text
   position    Int
   isPublished Boolean @default(false)
   isFree      Boolean @default(false)
 
   muxData MuxData?
 
-  courseId String @db.ObjectId
+  courseId String
   course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   userProgress userProgress[]
@@ -80,19 +79,19 @@ model Chapter {
 }
 
 model MuxData {
-  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  id         String  @id @default(uuid())
   assetId    String
   playbackId String?
 
-  chapterId String  @unique @db.ObjectId
+  chapterId String  @unique
   chapter   Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
 }
 
 model userProgress {
-  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  id     String @id @default(uuid())
   userId String
 
-  chapterId String  @db.ObjectId
+  chapterId String
   chapter   Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
 
   isCompleted Boolean @default(false)
@@ -105,20 +104,21 @@ model userProgress {
 }
 
 model Purchase {
-  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  id     String @id @default(uuid())
   userId String
 
-  courseId String @db.ObjectId
+  courseId String
   course   Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt()
 
+  @@unique([userId, courseId])
   @@index([courseId])
 }
 
 model StripeCustomer {
-  id               String @id @default(auto()) @map("_id") @db.ObjectId
+  id               String @id @default(uuid())
   userId           String @unique
   stripeCustomerId String @unique
 

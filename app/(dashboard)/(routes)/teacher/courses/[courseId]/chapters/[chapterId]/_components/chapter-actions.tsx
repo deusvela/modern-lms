@@ -52,6 +52,7 @@ export const ChapterActions = ({
             toast.success("Глава удалена!");
             router.refresh();
             router.push(`/teacher/courses/${courseId}`);
+            router.refresh();
         } catch {
             toast.error("Что-то пошло не так =(");
         } finally {

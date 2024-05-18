@@ -23,6 +23,10 @@ export const CourseCard = ({
     progress,
     category
 }: CourseCardProps) => {
+
+    const titles = ["Глав", "Глава", "Главы", "Главы"];
+    const getChapterTitle = (length: any) => titles[length > 4 ? 0 : length];
+
     return (
         <Link href={`/courses/${id}`}>
             <div className="group hover:shadow-sm transition overflow-hidden border border-slate-200 rounded-lg p-3 h-full">
@@ -48,7 +52,7 @@ export const CourseCard = ({
                                 icon={BookOpen}
                             />
                             <span>
-                                {chaptersLength} {chaptersLength === 1 ? "Глава" : "Глав"}
+                                {chaptersLength} {getChapterTitle(chaptersLength)}
                             </span>
                         </div>
                     </div>
@@ -58,7 +62,7 @@ export const CourseCard = ({
                         </div>
                     ) : (
                         <p className="text-xl md:text-sm font-medium text-slate-700">
-                            {price !== 0 ? (
+                            {price !== null ? (
                                 <span>
                                     {formatPrice(price)}
                                 </span>
