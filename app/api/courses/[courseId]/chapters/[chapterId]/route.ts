@@ -4,11 +4,6 @@ import Mux from "@mux/mux-node"
 
 import { db } from "@/lib/db"
 
-const { video } = new Mux({
-    tokenId: process.env.MUX_TOKEN_ID!,
-    tokenSecret: process.env.MUX_TOKEN_SECRET!,
-});
-
 export async function DELETE(
     req: Request,
     { params }: { params: { courseId: string; chapterId: string; } }
@@ -89,6 +84,12 @@ export async function DELETE(
         return new NextResponse("Внутренняя ошибка ", { status: 500 })
     }
 }
+
+
+const { video } = new Mux({
+    tokenId: process.env.MUX_TOKEN_ID!,
+    tokenSecret: process.env.MUX_TOKEN_SECRET!,
+});
 
 export async function PATCH(
     req: Request,

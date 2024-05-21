@@ -2,7 +2,7 @@ import { authMiddleware } from "@clerk/nextjs";
 
 export default authMiddleware({
     // позволяет вставлять страницы, без защиты с логина пароля для большей популярности
-    publicRoutes: ["/api/uploadthing"]
+    publicRoutes: ["/api/uploadthing", "/api/webhook"]
 });
 
 export const config = {
