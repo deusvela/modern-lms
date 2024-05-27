@@ -1,6 +1,6 @@
 import { Logo } from "./logo"
 import { SidebarRoutes } from "./sidebar-routes"
-import { Send, Headset } from "lucide-react"
+import { Send, Headset, Mail } from "lucide-react"
 
 export const Sidebar = () => {
     return (
@@ -23,6 +23,9 @@ export const Sidebar = () => {
                     </a>
                     <a href="https://discord.gg/s4gSQNBJ" className="cursor-pointer p-3 hover:bg-slate-200 rounded-sm transition" style={{ marginLeft: '8px' }}>
                         <Headset className="h-6 w-6 text-sky-700/75 hover:text-sky-600 transition" />
+                    </a>
+                    <a href="mailto:prilukov2002@gmail.com" className="cursor-pointer p-3 hover:bg-slate-200 rounded-sm transition" style={{ marginLeft: '8px' }}>
+                        <Mail className="h-6 w-6 text-sky-700/75 hover:text-sky-600 transition" />
                     </a>
                 </div>
             </div>
